@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Mi Amor ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px 10px;
+      animation: fadeIn 2s ease-in;
+    }
+    header h1 {
+      font-size: 3em;
+      color: #ff69b4;
+    }
+    header p {
+      font-size: 1.3em;
+      color: #ffc0cb;
+    }
+    .btn {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .btn:hover { background-color: #ff1493; }
+    #poema, .personal-message, .messages, .carousel-container, .gallery-heart, .notas { max-width: 700px; margin: 20px auto; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 20px; }
+    #poema h2, .personal-message p, .message p { color: #ffd1dc; }
+    .message { background: rgba(255,255,255,0.1); padding: 15px; border-left: 4px solid #ff69b4; margin-bottom: 15px; border-radius: 12px; }
+    footer { margin: 30px auto; text-align: center; color: #bbb; }
+
+    /* Corazones */
+    .heart {
+      position: fixed;
+      width: 14px;
+      height: 14px;
+      background-color: rgba(255, 105, 180, 0.3);
+      transform: rotate(45deg);
+      animation: floatUp 10s linear infinite;
+      z-index: 0;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background-color: rgba(255, 105, 180, 0.3);
+      border-radius: 50%;
+    }
+    .heart::before { top: -7px; left: 0; }
+    .heart::after { left: -7px; top: 0; }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0.6; }
+      100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+    }
+
+    /* Frases que caen */
+    .frase {
+      position: fixed;
+      top: -50px;
+      font-size: 1em;
+      color: #ffb6c1;
+      pointer-events: none;
+      opacity: 0.7;
+      animation: caer 12s linear infinite;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    @keyframes caer {
+      0% { transform: translateY(0); opacity: 0.7; }
+      100% { transform: translateY(120vh); opacity: 0; }
+    }
+
+    /* Notas tipo post-it */
+    .nota {
+      background: #fff8dc;
+      color: #333;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      position: absolute;
+      width: 120px;
+      transform: rotate(-5deg);
+    }
+    .nota:hover { transform: rotate(0deg) scale(1.05); }
+
+    /* Estrellas */
+    .estrella {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: parpadeo 2s infinite alternate;
+    }
+    @keyframes parpadeo {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    /* Personaje */
+    .personaje {
+      text-align: center;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .personaje img { width: 150px; }
+    .personaje p { color: #ffc0cb; font-style: italic; font-size: 1.1em; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 30px auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 1s ease-in-out;
+  width: 100%;
+}
+
+.carousel-slide {
+  position: relative;
+  min-width: 100%;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px #000;
+  background: rgba(0,0,0,0.3);
+  padding: 10px 20px;
+  border-radius: 0 0 20px 20px;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Para Ti, Mi Amor ❤️</h1>
+    <p>Una página hecha con todo mi corazón solo para ti</p>
+    <button class="btn" onclick="showSurprise()">💌 Mensaje Secreto</button>
+  </header>
+
+  <audio id="audio" autoplay loop>
+  <source src="musica.mp3" type="audio/mpeg">
+  Tu navegador no soporta el audio HTML5.
+</audio>
+
+  <section id="poema">
+    <h2>🌹 Poema Para el amor de mi vida</h2>
+    <p>Eres la melodía que mi alma necesitaba.<br>Mi inspiración diaria. Mi todo. 💖</p>
+  </section>
+
+  <section class="personaje">
+    <img src="https://media1.tenor.com/m/_o29rvJeM0gAAAAC/bear-flowers.gif" alt="Peluchito">
+    <p>Hola, soy tu osito fiel. Y vengo a recordarte cuánto te ama Israel. 💗</p>
+  </section>
+
+  <section class="carousel-container">
+  <div class="carousel-track">
+    <div class="carousel-slide">
+      <img src="fav1.jpg" alt="Momentos juntos 1">
+      <div class="carousel-caption">Contigo, cada instante se convierte en eternidad 💖</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda3.jpg.jpg" alt="Momentos juntos 2">
+      <div class="carousel-caption">Eres mi lugar favorito en todo el universo 🌙</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda4.jpg.jpg" alt="Momentos juntos 3">
+      <div class="carousel-caption">Tu sonrisa es mi poesía diaria ✨</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda5.jpg.jpg" alt="Momentos juntos 4">
+      <div class="carousel-caption">Juntos, hacemos del amor algo mágico 💫</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda6.jpg.jpg" alt="Momentos juntos 5">
+      <div class="carousel-caption">Tenerte es mi mayor fortuna 💕</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda7.jpg.jpeg" alt="Momentos juntos 6">
+      <div class="carousel-caption">Cada mirada tuya me desarma 💘</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda8.jpg.jpeg" alt="Momentos juntos 7">
+      <div class="carousel-caption">En tus abrazos encontré mi hogar 🏡</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda9.jpg.jpeg" alt="Momentos juntos 8">
+      <div class="carousel-caption">Tus ojos tienen el brillo de mi destino ✨</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda10.jpg.jpeg" alt="Momentos juntos 9">
+      <div class="carousel-caption">Desde que llegaste, todo tiene sentido 🌹</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda11.jpg.jpeg" alt="Momentos juntos 10">
+      <div class="carousel-caption">Mi paz empieza donde tú estás 💞</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda12.jpg.jpeg" alt="Momentos juntos 11">
+      <div class="carousel-caption">A tu lado aprendí a volar sin alas 🕊️</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda13.jpg.jpeg" alt="Momentos juntos 12">
+      <div class="carousel-caption">Nuestra historia es mi favorita 📖❤️</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda14.jpg.jpeg" alt="Momentos juntos 13">
+      <div class="carousel-caption">Me haces creer en lo imposible ✨</div>
+    </div>
+    <div class="carousel-slide">
+      <img src="linda15.jpg.jpeg" alt="Momentos juntos 14">
+      <div class="carousel-caption">Eres mi siempre, mi todo, mi amor 💍</div>
+    </div>
+  </div>
+</section>
+</section>
+  <section class="personal-message">
+    <p>Contigo aprendí que el amor verdadero existe. Eres mi sueño hecho realidad, mi vida entera. 💘</p>
+  </section>
+
+  <section class="messages">
+    <div class="message"><p>Mi mundo es mejor contigo. 🌷</p></div>
+    <div class="message"><p>Donde sea, pero siempre contigo. ❤️</p></div>
+    <div class="message"><p>Eres mi lugar seguro. 💘</p></div>
+    <div class="message"><p>nunca olvides lo mucho que te amo</p></div>
+    <div class="message"><p>esto es el comienzo de una historia que jamas tendra un final.</p></div>
+    <div class="message"><p>dicen que la perfeccion solo es una teoria, pero contigo puedo asegurar que no es asi porque tu eres la defincion de perfeccion.💘 </p></div>
+    <div class="message"><p>te amo mas alla de los limites del universo.💘🌟</p></div>
+    <div class="message"><p>no sabia cual era mi mayor anhelo hasta que tuve esa primera cita contigo.💘🌟</p></div>
+    <div class="message"><p>me encanta que me mires y sonrias sin ninguna explicacion.💘🌟</p></div>
+    <div class="message"><p>mi unica adiccion lleva tu nombre.💘🌟</p></div>
+    <div class="message"><p>te amo en colores que aun no has visto.💘🌟</p></div>
+    <div class="message"><p>andabamos sin buscarnos, pero sabiendo que andabamos para encontrarnos.💘🌟</p></div>
+  </section>
+
+  <div class="notas">
+    <div class="nota" style="top: 100px; left: 20px;">Te amo más que ayer 💌</div>
+    <div class="nota" style="top: 300px; left: 200px;">Tu sonrisa me ilumina 🌟</div>
+    <div class="nota" style="top: 500px; left: 50px;">Quiero un para siempre contigo 💕</div>
+    <div class="nota" style="top: 200px; left: 40px;">quiero una vida a tu lado 💕</div>
+    <div class="nota" style="top: 300px; left: 20px;">siempre te escojere a ti sobre todas las cosas💕</div>
+  </div>
+
+  <footer>
+    <p>Con todo mi amor para ti 💖 Siempre tuyo, Israel</p>
+  </footer>
+
+  <script>
+    function showSurprise() {
+      alert("💌 Mi amor, tú eres mi alegría, mi hogar y mi destino. Te amo más de lo que las palabras pueden decir.");
+    }
+
+    function crearCorazon() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(crearCorazon, 700);
+
+    const frasesBonitas = [
+      "Eres mi todo",
+      "Te amo con el alma",
+      "Eres mi sueño hecho realidad",
+      "Eres mi lugar seguro",
+      "Gracias por existir",
+      "Contigo, siempre",
+      "Tu amor me hace mejor","te amo con todo mi corazon",
+      "eres el amor de mi vida" ,"eres la mas hermosa","me encantas", "me fascinas","eres el sueño mas hermoso echo realidad",
+    ];
+    function crearFrase() {
+      const frase = document.createElement('div');
+      frase.className = 'frase';
+      frase.innerText = frasesBonitas[Math.floor(Math.random() * frasesBonitas.length)];
+      frase.style.left = Math.random() * 90 + 'vw';
+      frase.style.fontSize = (Math.random() * 0.6 + 1) + 'em';
+      frase.style.animationDuration = (Math.random() * 5 + 8) + 's';
+      document.body.appendChild(frase);
+      setTimeout(() => frase.remove(), 15000);
+    }
+    setInterval(crearFrase, 1500);
+
+    // Estrellas
+    for (let i = 0; i < 100; i++) {
+      const estrella = document.createElement('div');
+      estrella.className = 'estrella';
+      estrella.style.left = Math.random() * 100 + 'vw';
+      estrella.style.top = Math.random() * 100 + 'vh';
+      document.body.appendChild(estrella);
+    }
+    let carruselIndex = 0;
+
+function avanzarCarrusel() {
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.carousel-slide');
+  carruselIndex = (carruselIndex + 1) % slides.length;
+  track.style.transform = `translateX(-${carruselIndex * 100}%)`;
+}
+
+setInterval(avanzarCarrusel, 5000); // Cambia cada 5 segundos
+// Reproduce el audio tras el primer clic en cualquier parte del sitio
+document.addEventListener('click', () => {
+  const audio = document.getElementById("audio");
+  audio.play().catch(() => {});
+}, { once: true });
+  </script>
+</body>
+</html>
